@@ -3,32 +3,84 @@ import pymunk
 import sys
 import os
 import settings as s
+from typing import List, Union
 from game_setup import GameSetup
 from game_manager import GameManager
 
-def handle_events(event, key) -> None:
-    """ Handle pygame exit events """
+def handle_events(event: pygame.event.Event, key: Union[bool, int]) -> bool:
+    """ 
+    Handle pygame exit events.
+
+    Args:
+        event (pygame.event.Event): Pygame event intance.
+        key (Union[bool, int]): Key press event.
+
+    Returns:
+        bool: True if the game continues, otherwise the game quits.
+    """
+    
     if event.type == pygame.QUIT or key[pygame.K_ESCAPE]:
         pygame.quit()
         sys.exit()
     return True
 
-def handle_input(key, selected_item, menu_items) -> str:
+def handle_input(key: Union[bool, int], selected_item: int, menu_items: List[str]) -> int:
+    """
+    Handle the user input for menu navigation.
+
+    Args:
+        key (Union[bool, int]): Key press event.
+        selected_item (int): Currently selected menu item.
+        menu_items (List[str]): List of menu items.
+
+    Returns:
+        int: Updated selected item.
+    """
+    
     if key[pygame.K_DOWN]:
         selected_item = (selected_item + 1) % len(menu_items)
     elif key[pygame.K_UP]:
         selected_item = (selected_item - 1) % len(menu_items)
     return selected_item
 
-def get_menu_item(selected_item, menu_items) -> str:
+def get_menu_item(selected_item: int, menu_items: List[str]) -> str:
+    """
+    Get the selected menu item.
+
+    Args:
+        selected_item (int): Currently selected menu item.
+        menu_items (List[str]): List of menu items.
+
+    Returns:
+        str: Selected menu item.
+    """
+    
     return menu_items[selected_item]
 
-def handle_return_key(key, selected_item, menu_items) -> str:
+def handle_return_key(key: Union[bool, int], selected_item: int, menu_items: List[str]) -> str:
+    """
+    Handle return key press event.
+
+    Args:
+        key (Union[bool, int]): Key press event.
+        selected_item (int): Currently selected menu item.
+        menu_items (List[str]): List of menu items.
+
+    Returns:
+        str: Selected menu item if return key is pressed.
+    """
+    
     if key[pygame.K_RETURN]:
         return get_menu_item(selected_item, menu_items)
     
 def main_menu() -> str:
-    """ Main menu display """
+    """ 
+    Display the main menu and handle user interaction.
+
+    Returns:
+        str: Selected menu item.  
+    """
+    
     pygame.display.set_caption("Menu")
     menu_items = ["start", "exit"]
     selected_item = 0
@@ -50,21 +102,21 @@ def main_menu() -> str:
             if return_item:
                 return return_item
 
-        game_title = s.font_b.render("PARKOUR", True, s.WHITE)
+        game_title = s.title_font.render("PARKOUR", True, s.WHITE)
         s.screen.blit(game_title, (s.WIDTH*0.12,s.HEIGHT*0.40))
         
         for i, item in enumerate(menu_items):
             if i == selected_item:
-                text = s.font_a.render(item, True, s.WHITE)
+                text = s.general_font.render(item, True, s.WHITE)
                 pygame.draw.rect(s.screen, s.YELLOW, text.get_rect(center=(s.WIDTH*0.20, s.HEIGHT/2 + i * 50)), 2)
             else:
-                text = s.font_a.render(item, True,s.GREY)
+                text = s.general_font.render(item, True,s.GREY)
             s.screen.blit(text, text.get_rect(center=(s.WIDTH*0.20, s.HEIGHT/2 + i * 50)))
         
         # Controls tutorial
-        move_keys = s.font_a.render("Press arrow keys to move and space to jump", True, s.WHITE)
+        move_keys = s.general_font.render("Press arrow keys to move and space to jump", True, s.WHITE)
         s.screen.blit(move_keys, (s.WIDTH*0.35,s.HEIGHT*0.60))
-        jump_key = s.font_a.render("Space", True, s.YELLOW)
+        jump_key = s.general_font.render("Space", True, s.YELLOW)
         s.screen.blit(jump_key, (s.WIDTH*0.70,s.HEIGHT*0.52))
 
         # Rendering
@@ -72,7 +124,11 @@ def main_menu() -> str:
         pygame.display.update()
     pygame.quit()
 
-def start_game() -> str:
+def start_game() -> None:
+    """
+    Start the game, handle user interaction, and update the game state.
+    """
+    
     pygame.display.set_caption("Parkour")
     space = pymunk.Space()
     game_setup = GameSetup(space)
@@ -96,7 +152,10 @@ def start_game() -> str:
             space.step(s.dt)
     pygame.quit()
 
-def main():
+def main() -> None:
+    """
+    Main function to run the game.
+    """
     selected_item = main_menu()
 
     while selected_item != "exit":

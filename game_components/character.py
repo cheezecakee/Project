@@ -1,16 +1,31 @@
 """ 
-The character module is responsible for creating the character body, shape, sensor,
-    movement and jump. It also assigns key presses for the user to control the 
-    character.
+Character module.
+
+This module is responsible for creating the character body, shape, sensor,
+movement and jump. It also assigns key presses for the user to control the
+character.
 """
 
-import scale_objects as so
 import settings as s
+import scale_objects as so
 import pymunk, pygame, math
 from typing import Callable, Tuple
 
 class Character:
-    """Handles character creation and positioning."""
+    """
+    Handles character creation and positioning.
+    
+    Attributes:
+        space (pymunk.Space): The space in which the character exists.
+        mass (int): The mass of the character.
+        width (int): The width of the character.
+        height (int): The height of the character.
+        pos_x (float): The x position of the character
+        pos_y (float): The y position of the character
+        body (pymunk.Body): The body of the character
+        shape (pymunk.Shape): The shape of the character
+        sensor_shape (pymunk.Shape): The sensor shape of the character
+    """
 
     def __init__(self, space: pymunk.Space) -> None:
         self.space = space
@@ -26,7 +41,12 @@ class Character:
         self.sensor_shape.collision_type = 3
     
     def character_body(self) -> pymunk.Body:
-        """Create and return a character body."""
+        """
+        Create and return a character body.
+        
+        Returns:
+            pymunk.Body: The body of the character.
+        """
 
         body = pymunk.Body(0, 0)
         body.position = (self.pos_x,self.pos_y)
@@ -34,7 +54,12 @@ class Character:
 
     
     def character_shape(self) -> pymunk.Shape:
-        """Create and return a character shape."""
+        """
+        Create and return a character shape.
+        
+        Returns:
+            pymunk.Shape: The shape of the character.
+        """
 
         shape = pymunk.Poly.create_box(self.body, (self.width,self.height))
         shape.mass = self.mass
@@ -62,12 +87,16 @@ class Character:
 
     
     def character_sensor(self) -> pymunk.Shape:
-        """Create and return a character sensor shape."""
+        """
+        Create and return a character sensor shape.
+        
+        Returns:
+            pymunk.Shape: The sensor shape of the character.
+        """
 
         sensor_shape = pymunk.Segment(self.body, (-s.WIDTH, self.height), (s.WIDTH, self.height), 0)
         sensor_shape.sensor = True
         return sensor_shape
-    
     
     def reset_character(self) -> None:
         """Reset character to starting position and velocity when it's game over."""
@@ -77,7 +106,13 @@ class Character:
 
 
 class Movement:
-    """Handle the movement of the character based on user input from the keyboard."""
+    """
+    Handle the movement of the character based on user input from the keyboard.
+    
+    Attributes:
+        body (pymunk.Body): The body of the character.
+        character_move (Callable[[], None]): The move function of the character.
+    """
 
     def __init__(self, body: pymunk.Body) -> None:
         self.FORCE: int = 2000 
@@ -109,7 +144,13 @@ class Movement:
             self.right()
 
 class Jump:
-    """Handle the jump action of the character based on user input from the keyboard."""
+    """
+    Handle the jump action of the character based on user input from the keyboard.
+    
+    Attributes:
+        body (pymunk.Body): the body of the character.
+        character_jump (Callable[[], None]): The jump function of the character.
+    """
 
     def __init__(self, body: pymunk.Body) -> None:
         self.body = body
