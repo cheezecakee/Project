@@ -20,8 +20,9 @@ The game features the character in a tower-like environment, the goal is to clim
  - [Pymunk Installation Guide](https://www.pymunk.org/en/latest/installation.html)
  - [Pytest Installation Guide](https://docs.pytest.org/en/7.4.x/getting-started.html)
 
- [!NOTE]
+ **NOTE:**
  [If you're getting an error message about pip please refer to the official pip guide](https://pip.pypa.io/en/stable/getting-started/)
+
 ### How to play
 
 ```
