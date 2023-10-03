@@ -1,4 +1,4 @@
-# Parkour v.0.4
+# Parkour
 #### Video Demo: <>
 ### Overview
 
@@ -34,6 +34,7 @@ The game features the character in a tower-like environment, the goal is to clim
 - Press the `Space` key to jump.
 - The objective of the game is to climb as **high** as you can.
 - Be careful not to **fall**!
+
 ### Project Structure
 
 **Here is a brief overview of the structure of the project:**
@@ -57,21 +58,37 @@ The game features the character in a tower-like environment, the goal is to clim
 
 **A description of what each component does:**
 
-- `game_components/` : This directory contains all the game components
-	- `character.py`: Description goes here
-	- `platform_manager.py`: Description goes here
-	- `mechanics.py`: Description goes here
-	- `collision.py`: Description goes here
-	- `scroll_system.py`: Description goes here
-	- `walls.py`: Description goes here
-- `game_setup.py`: Description goes here
-- `game_manager.py`: Description goes here
-- `images.py`: Description goes here
-- `project.py`: Description goes here
-- `settings.py`: Description goes here
-- `scale_objects.py`: Description goes here
-- `test_project.py`: Description goes here
+- `game_components/` : A package containing all the relevant components. Each component is designed to handle a specific aspect of the game, and they work together to create a complete game environment.
 
+	- `character.py`: A module that is responsible for creating the character, character movement and character jump function. It also assigns the keyboard controls for the user to control the character.
+	
+	- `platform_manager.py`: A class that is responsible for creating the platforms, and setting their behaviour. That includes the random spawn locations, and movement.
+	
+	 - `mechanics.py`: A class responsible for setting the score, checking the game status and restarting the game.
+	
+	 - `collision.py`:  Class responsible for assigning what types of collision should happen between the character and platform and deciding how they should interact with each other.
+	
+	 - `scroll_system.py`: Class responsible for creating the infinite scroll effect in the game. This class handles the scrolling of the game world, including the movement of the camera and the platforms. It also keeps track of the platforms that the character has passed.
+	
+	 - `walls.py`: Class responsible for creating the walls of the game to prevent the character from going out of bounds from the sides and creates a bounce effect when colliding with the character to boost velocity.
+
+- `game_setup.py`: Class responsible for setting up the game environment. This includes adding the character, platforms, and walls into the **Pymunk** space. 
+
+	 `Spaces are the basic simulation unit in Pymunk. You add bodies, shapes and constraints to a space, and then update the space as a whole. They control how all the rigid bodies, shapes, and constraints interact together.`
+	
+- `game_manager.py`:  Class is responsible for managing the game state, including the character, platforms, scrolling, and game mechanics. It also handles the rendering of game elements and the game over screen.
+
+- `images.py`: Class responsible for loading all the images.
+
+- `project.py`: Main file where all the **Pygame** surfaces are made and ran on the display.
+	 `A pygame Surface is used to represent any image.`
+	 `Pygame has a single display Surface that is either contained in a window or runs full screen. Once you create the display you treat it as a regular Surface.`
+	 
+- `settings.py`: All constant variables that are used in more than one class, function or file is stored here, these are not to be changed. Some extra settings included are the **Pygame** and **Pymunk** settings.
+
+- `scale_objects.py`: All constant variables that are used in different shapes and objects. These are not to be changed. All variables are scaled here in relation to the display size. The way they are scaled is based on the percentage of their width and heights to the current display size.
+
+- `test_project.py`: Description goes here
 ### Design Choices
 
 ```
