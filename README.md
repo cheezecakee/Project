@@ -1,4 +1,3 @@
-Your `README.md` file should be minimally multiple paragraphs in length, and should explain what your project is, what each of the files you wrote for the project contains and does, and if you debated certain design choices, explaining why you made them.
 # Parkour
 #### Video Demo: <>
 ### Overview
