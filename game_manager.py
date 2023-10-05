@@ -1,3 +1,4 @@
+import os
 import sys
 import pygame
 import settings as s
@@ -9,6 +10,7 @@ from game_components.character import Movement
 from game_components.collision import Collision
 from game_components.mechanics import Mechanics 
 from game_components.scroll_system import Scroll
+pygame.mixer.init()
 
 class GameManager:
     """
@@ -72,7 +74,6 @@ class GameManager:
         """
         Updates the character's jump state based on the current game state.
         """
-        
         self.collision.check_in_air()
         if self.collision.on_ground:
             self.character_jump.character_jump()
@@ -285,6 +286,7 @@ class GameManager:
         """
         
         if self.mechanic.game_over is False:  
+            s.DUCKY.play()
             self.move_background()
             self.draw_background()
             self.draw_platform()
@@ -301,6 +303,9 @@ class GameManager:
             self.update_game_status()
             self.update_highscore()
             self.quit_game()
+            s.ELEVATOR.fadeout(1)
         else:
+            s.DUCKY.fadeout(1)
+            s.ELEVATOR.play()
             self.game_over_display()
                 

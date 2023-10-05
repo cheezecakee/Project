@@ -56,6 +56,7 @@ class Mechanics:
         
         highscore = self.get_highscore()
         if self.score > highscore:
+            s.PARKOUR_SOUND.play()
             self.save_highscore(self.score)
         return highscore
 
