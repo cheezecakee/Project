@@ -1,6 +1,6 @@
 import pymunk
 import settings as s
-from typing import Tuple
+from typing import Tuple, List
 from game_components.character import Character
 
 class Scroll:
@@ -20,7 +20,7 @@ class Scroll:
         passed_platforms (dict): A dictionary to keep track of the platforms that have been passed.
     """
 
-    def __init__(self, space: pymunk.Space, character: Character, platforms: list[Tuple[pymunk.Body, pymunk.Segment]]) -> None:
+    def __init__(self, space: pymunk.Space, character: Character, platforms: List[Tuple[pymunk.Body, pymunk.Segment]]) -> None:
         """
         Initializes the Scroll class with the given space, character, and platforms.
 
@@ -34,12 +34,23 @@ class Scroll:
         self.character_body = character.body
         self.platforms = platforms
         self.platforms_passed: int = 0
-        self.speed: float = 1.0
-        self.max_speed: float = 4.0
+        self.speed: float = 0
+        self.max_speed: float = 3.0
         self.passed_platforms: dict = {}
 
     def move_camera(self) -> float:
-        """Move camera based on characters y position."""
+        """
+        Move camera based on character's y position.
+        
+        If the character's y position is less than half of the screen height, the scroll amount 
+        is calculated as the difference between half of the screen height and the character's y
+        position.
+        Then, the y position of all bodies in the space is incresed by the scroll amount. Finally,
+        the platform counter is updated.
+
+        Returns:
+            float: The amound of scrolling.
+        """
 
         follow_height: float = s.HEIGHT / 2
         scroll_amount: int = 0 # Initialize scroll_amount
@@ -96,7 +107,7 @@ class Scroll:
             float: The calculated speed of the scrolling.
         """
         
-        self.speed: float = 1 + elapsed_time / 60
+        self.speed: float = 0.5 + elapsed_time / 60
         if self.speed > self.max_speed:
             self.speed = self.max_speed
         for body in self.space.bodies:

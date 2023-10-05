@@ -9,7 +9,7 @@ character.
 import settings as s
 import scale_objects as so
 import pymunk, pygame, math
-from typing import Callable, Tuple
+from typing import Callable, Tuple, List
 
 class Character:
     """
@@ -136,7 +136,7 @@ class Movement:
     def move(self) -> None:
         """Applies left, right force on key press."""
 
-        key: list[bool] = pygame.key.get_pressed()
+        key: List[bool] = pygame.key.get_pressed()
 
         if key[pygame.K_LEFT]: #move left
             self.left()
@@ -166,7 +166,7 @@ class Jump:
     def jump_key(self) -> None:
         """Applies jump force on key press."""
 
-        key: list[bool] = pygame.key.get_pressed()
+        key: List[bool] = pygame.key.get_pressed()
 
         if key[pygame.K_SPACE]:
             self.jump()

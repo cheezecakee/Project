@@ -1,3 +1,4 @@
+import os
 import sys
 import pygame
 import settings as s
@@ -9,7 +10,7 @@ from game_components.character import Movement
 from game_components.collision import Collision
 from game_components.mechanics import Mechanics 
 from game_components.scroll_system import Scroll
-
+pygame.mixer.init()
 
 class GameManager:
     """
@@ -73,7 +74,6 @@ class GameManager:
         """
         Updates the character's jump state based on the current game state.
         """
-        
         self.collision.check_in_air()
         if self.collision.on_ground:
             self.character_jump.character_jump()
@@ -164,8 +164,11 @@ class GameManager:
         """
         Displays the game over screen when the game ends.
         """
-        
         s.screen.fill(s.BURGANDY)
+        highscore = s.general_font.render(f"Highscore: {self.update_highscore()}", True, s.WHITE)
+        s.screen.blit(highscore, (s.WIDTH*0.79, s.HEIGHT*0.02))
+        score = s.general_font.render(f"Score: {self.update_score()}", True, s.WHITE)
+        s.screen.blit(score, (s.WIDTH*0.40, s.HEIGHT*0.60))
         restart = s.general_font.render("Game Over - Press Space to Restart", True, s.WHITE)
         s.screen.blit(restart, (s.WIDTH*0.25,s.HEIGHT/2))
         main_menu = s.general_font.render("Press ESC to Exit", True, s.WHITE)
@@ -192,16 +195,23 @@ class GameManager:
             pygame.quit()
             sys.exit()
 
+    def update_highscore(self) -> int:
+        if self.mechanic.highscore == None:
+            return 0
+        else:
+            return self.mechanic.highscore()
+
     def display_score_time(self) -> None:
         """
         Displays the current score and elapsed time on the game screen.
         """
-        
+        highscore = s.general_font.render(f"{self.update_highscore()}", True, s.WHITE)
+        s.screen.blit(highscore, (s.WIDTH*0.92, s.HEIGHT*0.02))
         time = s.general_font.render(f"Time: {self.update_auto_scroll():.2f}s", True, s.WHITE)
         s.screen.blit(time, (s.WIDTH*0.01,s.HEIGHT*0.02))
         score = s.general_font.render(f"Score: {self.update_score()}", True, s.WHITE)
         s.screen.blit(score, (s.WIDTH*0.01,s.HEIGHT*0.07))
-
+        
     def draw_wall(self) -> None:
         """
         Draws the wall sprites on the game screen.
@@ -276,6 +286,7 @@ class GameManager:
         """
         
         if self.mechanic.game_over is False:  
+            s.DUCKY.play()
             self.move_background()
             self.draw_background()
             self.draw_platform()
@@ -290,7 +301,11 @@ class GameManager:
             self.update_score()
             self.display_score_time()
             self.update_game_status()
+            self.update_highscore()
             self.quit_game()
+            s.ELEVATOR.fadeout(1)
         else:
+            s.DUCKY.fadeout(1)
+            s.ELEVATOR.play()
             self.game_over_display()
                 

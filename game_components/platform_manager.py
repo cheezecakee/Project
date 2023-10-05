@@ -2,17 +2,38 @@ import pymunk
 import random
 import settings as s
 import scale_objects as so
-from typing import Tuple
+from typing import Tuple, List
 
 class PlatformManager:
     """
-    Responsible for creating the platform bodies, shapes and adding them to a list.
-    Also manages the platform positioning in the space so they can be reused.
+    A class to manage the platforms in a game.
+
+    This calss is responsible for creating the platform bodies, shapes and adding them to a list.
+    It also manages the platform positioning in the space so they can be reused.
+
+    Attributes:
+        space (pymunk.Space): The space in which the platforms exist.
+        platforms (List): A list of platforms.
+        prev_y (int): The previous y-coordinate of a platform.
+        friciton (float): The friction of the platforms.
+        min_platform_size (int): The manimum size of a platform.
+        max_platform_size (int): The maxamum size of a platform.
+        platforms_thickness (int): The thickness of the platforms.
+        platform_disctance (int): The distance between platforms.
+        n_platforms (int): The number of platforms.
+        passed (bool): A flag indicating whether a platform has been passed.
+        platform_counter (int): A counter for the platforms.
     """
 
     def __init__(self, space: pymunk.Space) -> None:
+        """
+        The constructor for PlatformManager class.
+
+        Args:
+            space (pymunk.Space): Thespace in which the platforms exist.
+        """
         self.space = space
-        self.platforms: list = []
+        self.platforms: List = []
         self.prev_y: int = so.PREV_Y
         self.friction: float = 1.0
         self.min_platform_size: int = so.MIN_PLATFORM_SIZE
@@ -24,33 +45,46 @@ class PlatformManager:
         self.platform_counter: int = 5
 
     def create_body(self) -> pymunk.Body:
-        """Creates and returns a platform body."""
+        """
+        Creates and returns a platform body.
+        
+        Returns:
+            pymunk.Body: The created platform body.
+        """
 
         body = pymunk.Body(body_type=pymunk.Body.KINEMATIC)
         body.passed = False
         return body
     
     def create_platform(self) -> Tuple[pymunk.Body, pymunk.Segment]:
-        """Creates and returns a platform Tuple which includes the body and segment with a 
-        random x size."""
+        """
+        Creates and returns a platform Tuple which includes the body and segment with a 
+        random x size.
+        
+        Returns:
+            Tuple[pymunk.Body, pymunk.Segment]: The created platform.
+        """
 
         body = self.create_body()
 
         platform_size: int = random.randint(so.MIN_PLATFORM_SIZE, so.MAX_PLATFORM_SIZE)
         half_size: float = platform_size / 2
 
-        self.prev_y -= self.platform_distance
-
         x: int =  random.randint(so.PLATFORM_MIN_X, so.PLATFORM_MAX_X)
         body.position = (x, self.prev_y)
         platform = pymunk.Segment(body, (-half_size,0), (half_size, 0), self.platforms_thickness)
         platform.friction = self.friction
         platform.collision_type = 2
-
+                
         return body, platform
     
     def create_wide_platform(self) -> Tuple[pymunk.Body, pymunk.Segment]:
-        """Creates and returns a wide platform body and segment."""
+        """
+        Creates and returns a wide platform body and segment.
+        
+        Returns:
+            Tuple[pymunk.Body, pymunk.Segment]: The created wide platform.
+        """
 
         body = self.create_body()
         body.position = (s.WIDTH/2, self.prev_y)
@@ -60,7 +94,7 @@ class PlatformManager:
 
         return body, platform
     
-    def generate_platform(self) -> list[Tuple[pymunk.Body, pymunk.Segment]]:
+    def generate_platform(self) -> List[Tuple[pymunk.Body, pymunk.Segment]]:
         """
         Generate a list of platforms and bodies.
 
@@ -68,7 +102,7 @@ class PlatformManager:
         Every 50th platform is a wide platform, and the rest are regular platforms.
 
         Returns:
-            list: A list of tuples, each containing a "pymunk.Body" and a "pymunk.Segment"
+            List[Tuple[pymunk.Body, pymunk.Segment]]: A list of tuples, each containing a "pymunk.Body" and a "pymunk.Segment"
             representing a platform.
         """
 
@@ -79,12 +113,13 @@ class PlatformManager:
             else:
                 body, platform = self.create_platform()
             self.platforms.append((body, platform))
+            self.prev_y -= self.platform_distance
         self.platforms = list(self.platforms)
         return self.platforms
       
     def move_platforms(self) -> None:
         """
-        Move the platforms back to the top of the list and screen height.
+        Moves the platforms back to the top of the list and screen height.
 
         This method iterates over all platforms in "self.platfoms". If a platform's y position is
         greater than "s.HEIGHT", it resets the platform's position. Every 50th platform is moved to

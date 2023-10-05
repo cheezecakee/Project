@@ -5,9 +5,11 @@ settings included are the pygame display, gravity, and physics
 settings.
 """
 
+import os
 import pygame
 
 pygame.init()
+pygame.mixer.init()
 
 # Screen settings
 WIDTH: int = 1280
@@ -16,9 +18,9 @@ HEIGHT: int = 800
 # Display settings
 FLAGS = pygame.FULLSCREEN # Sets the display to fullscreen mode
 # Fullscreen mode
-# screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=FLAGS)
+screen = pygame.display.set_mode((WIDTH, HEIGHT), flags=FLAGS)
 # Windowed mode
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+# screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 # Physics settings
 GRAVITY: tuple = (0, 2000.0)
@@ -46,3 +48,12 @@ dt: float = 1.0/60.0 # Delta time
 
 # Game settings
 START_TICKS: int = 0 # Starting time in-game
+
+# Sound settings
+pygame.mixer.pre_init(44100, -16, 1, 512)
+PARKOUR_SOUND = pygame.mixer.Sound(os.path.join("audio", "parkour!.mp3"))
+PARKOUR_SOUND.set_volume(10)
+ELEVATOR = pygame.mixer.Sound(os.path.join("audio", ("elevator_music.mp3")))
+ELEVATOR.set_volume(0.7)
+DUCKY = pygame.mixer.Sound(os.path.join("audio", ("ducky.mp3")))
+DUCKY.set_volume(0.7)

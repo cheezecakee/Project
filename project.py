@@ -6,6 +6,8 @@ import settings as s
 from typing import List, Union
 from game_setup import GameSetup
 from game_manager import GameManager
+pygame.mixer.init()
+
 
 def handle_events(event: pygame.event.Event, key: Union[bool, int]) -> bool:
     """ 
@@ -71,6 +73,7 @@ def handle_return_key(key: Union[bool, int], selected_item: int, menu_items: Lis
     """
     
     if key[pygame.K_RETURN]:
+        s.PARKOUR_SOUND.play()
         return get_menu_item(selected_item, menu_items)
     
 def main_menu() -> str:

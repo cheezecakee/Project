@@ -1,15 +1,24 @@
 
 import pymunk
-from typing import Tuple
+from typing import Tuple, List
 from game_components.character import Character
 
 class Collision:
     """
-    Responsible of assigning the collision types to the shapes and deciding how they 
+    Class responsible for assigning the collision types to the shapes and deciding how they 
     should interact inside the space.
     """
 
-    def __init__(self, space: pymunk.Space, character: Character, platforms: list[Tuple[pymunk.Body, pymunk.Segment]] ) -> None:
+    def __init__(self, space: pymunk.Space, character: Character, platforms: List[Tuple[pymunk.Body, pymunk.Segment]] ) -> None:
+        """
+        Initializes the Coliision Class with the given space, character, and platforms.
+
+        Args:
+            space (pymunk.Space): The space in which the game objects exists.
+            character (Character): The character in the game.
+            platforms (List[Tuple[pymunk.Body, pymunk.Segment]]): The platforms in the game. 
+        """
+        
         self.space = space
         self.character = character
         self.platforms = platforms
@@ -21,14 +30,14 @@ class Collision:
         Called when two shapes start touching for the first time.
         Prevents collision if the character is moving upwards.
 
-        Parameters:
-        arbiter (Arbiter): The arbiter for the collision.
-        space (Space): The space in which the collision occurred.
-        data (Any): Additional data.
+        Args:
+            arbiter (Arbiter): The arbiter for the collision.
+            space (Space): The space in which the collision occurred.
+            data (Any): Additional data.
 
         Returns:
-        bool: Return True to process the collision normally or False to cause to ignore the 
-        collision entirely.
+            bool: Return True to process the collision normally or False to cause to ignore the 
+            collision entirely.
         """
         
         if self.character.body.velocity.y < 0:
@@ -44,14 +53,14 @@ class Collision:
         Called when the character sensor starts touching a platform for the first time.
         Increments a counter everytime this happens.
 
-        Parameters:
-        arbiter (Arbiter): The arbiter for the collision.
-        space (Space): The space in which the collision occurred.
-        data (Any): Additional data.
+        Args:
+            arbiter (Arbiter): The arbiter for the collision.
+            space (Space): The space in which the collision occurred.
+            data (Any): Additional data.
 
         Returns:
-        bool: Return True to process the collision normally of False if the body.pass is set
-        to True.
+            bool: Return True to process the collision normally of False if the body.pass is set
+            to True.
         """
 
         body = arbiter.shapes[1].body
@@ -73,7 +82,13 @@ class Collision:
         self.sensor_handler.begin = self.sensor_collide
 
     def check_in_air(self) -> bool:
-        """Checks if character is in the air."""
+        """
+        Checks if character is in the air.
+        
+        Returns:
+            bool: True if character is in the  air, False otherwise.
+        """
+        
         if abs(self.character.body.velocity.y) > 0.01:
             self.on_ground = False
         else:

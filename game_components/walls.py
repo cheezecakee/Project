@@ -5,16 +5,17 @@ import pymunk
 
 class Walls:
     """
-    Responsible for creating the walls of the game to prevent the character from going 
+    Class responsible for creating the walls of the game to prevent the character from going 
     out of bounds from the sides and creates a bounce effect when colliding with the character
     to boost velocity.
     """
 
     def __init__(self, space: pymunk.Space) -> None:
         """
-        Initialize a Walls object.
+        Initialize the Walls class with the given space.
 
-        :param space: A pymunk.Space object representing the game space.
+        Args:
+            space (pymunk.Space):A A pymunk.Space object representing the game space.
         """
         self.space = space
 
@@ -22,8 +23,9 @@ class Walls:
         """
         Creates and returns static body segments as the wall.
 
-        :return: A tuple of two pymunk.Segment objects representing the left and right walls of 
-        the game.
+        Returns:
+            Tuple[Pymunk.Segment, pymunk.Segment]: A tuple of two pymunk.Segment objects representing the left and right walls of 
+            the game.
         """
 
         LEFT_WALL = pymunk.Segment(self.space.static_body, (0, 0), (0, so.WALL_HEIGHT), so.WALL_THICKNESS)
