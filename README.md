@@ -13,7 +13,9 @@ The game features the character in a tower-like environment, the goal is to clim
 1. Clone the repository to your local machine.
 2. Navigate to the **project** directory.
 3. Install the necessary libraries by running the following command:
-	`pip install -r requirements.txt`
+```
+ pip install -r requirements.txt
+```
 
  For more detailed instructions on installing the libraries used in this project, refer to the official guides:
 
@@ -23,7 +25,7 @@ The game features the character in a tower-like environment, the goal is to clim
 
  **NOTE:**
  If you're using Linux or macOS, you might need to use `pip3` instead of `pip`:
- ```
+```
  pip3 install -r requirements.txt
 ```
  If you're getting an error message about pip, please refer to the [official pip guide](https://pip.pypa.io/en/stable/getting-started/).
