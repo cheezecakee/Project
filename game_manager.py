@@ -286,7 +286,6 @@ class GameManager:
         """
         
         if self.mechanic.game_over is False:  
-            s.DUCKY.play()
             self.move_background()
             self.draw_background()
             self.draw_platform()
@@ -305,7 +304,6 @@ class GameManager:
             self.quit_game()
             s.ELEVATOR.fadeout(1)
         else:
-            s.DUCKY.fadeout(1)
             s.ELEVATOR.play()
             self.game_over_display()
                 
