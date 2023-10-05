@@ -6,7 +6,6 @@ movement and jump. It also assigns key presses for the user to control the
 character.
 """
 
-import os
 import settings as s
 import scale_objects as so
 import pymunk, pygame, math

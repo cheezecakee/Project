@@ -1,5 +1,5 @@
-
-import os, pygame
+import os
+import pygame
 from typing import Tuple
 
 pygame.init()
