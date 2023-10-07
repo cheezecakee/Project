@@ -20,7 +20,7 @@ For Windows:
 ```
 cd "C:\path\to\your\folder"
 ```
-![Alt text](img/open_path.png)
+![Open_path](img/open_path.png)
 
 For Linux or macOS:
 ```
@@ -31,7 +31,7 @@ cd /path/to/your/folder
 ```
  pip install -r requirements.txt
 ``` 
-![[Pasted image 20231007144713.png]]
+![Open_path](img/requirements.png)
  
  For more detailed instructions on installing the libraries used in this project, refer to the official guides:
 
@@ -51,7 +51,7 @@ cd /path/to/your/folder
 ```
 python project.py
 ```
-![[Pasted image 20231007144959.png]]
+![open_project](img/python_project.png)
 and enjoy! 
 
 ![[Pasted image 20231007145058.png]]
