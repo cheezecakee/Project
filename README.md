@@ -51,10 +51,13 @@ cd /path/to/your/folder
 ```
 python project.py
 ```
+
 ![Open_project](img/python_project.png)
+
 and enjoy! 
 
 ![Game](img/game.png)
+
  **NOTE:**
  If you're using Linux or macOS,  you might need to use `python3` instead of `python`:
 ```
