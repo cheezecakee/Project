@@ -20,7 +20,7 @@ For Windows:
 ```
 cd "C:\path\to\your\folder"
 ```
-![Alt text](img/open_path)
+![Alt text](img/open_path.png)
 
 For Linux or macOS:
 ```
