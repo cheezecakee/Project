@@ -20,7 +20,7 @@ For Windows:
 ```
 cd "C:\path\to\your\folder"
 ```
-![[Pasted image 20231007144914.png]]
+![Alt text](img/open_path)
 
 For Linux or macOS:
 ```
