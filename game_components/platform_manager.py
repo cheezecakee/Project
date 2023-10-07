@@ -6,9 +6,7 @@ from typing import Tuple, List
 
 class PlatformManager:
     """
-    A class to manage the platforms in a game.
-
-    This calss is responsible for creating the platform bodies, shapes and adding them to a list.
+    This class is responsible for creating the platform bodies, shapes and adding them to a list.
     It also manages the platform positioning in the space so they can be reused.
 
     Attributes:

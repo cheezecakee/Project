@@ -26,6 +26,7 @@ class Mechanics:
         """
         
         if character.body.position.y > s.HEIGHT:
+            s.PARKOUR_SOUND.play()
             self.game_over = True
     
     def get_score(self, counter: int) -> int:

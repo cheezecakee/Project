@@ -11,12 +11,28 @@ The game features the character in a tower-like environment, the goal is to clim
 ### Installation
 
 1. Clone the repository to your local machine.
-2. Navigate to the **project** directory.
-3. Install the necessary libraries by running the following command:
+
+2. Navigate to the **project** directory and copy the path.
+
+3.  Open your command terminal as an admin and go to the directory path: 
+
+For Windows:
 ```
- pip install -r requirements.txt
+cd "C:\path\to\your\folder"
+```
+![[Pasted image 20231007144914.png]]
+
+For Linux or macOS:
+```
+cd /path/to/your/folder
 ```
 
+4. Install the necessary libraries by running the following command:
+```
+ pip install -r requirements.txt
+``` 
+![[Pasted image 20231007144713.png]]
+ 
  For more detailed instructions on installing the libraries used in this project, refer to the official guides:
 
  - [Pygame Installation Guide](https://www.pygame.org/wiki/GettingStarted)
@@ -28,8 +44,22 @@ The game features the character in a tower-like environment, the goal is to clim
 ```
  pip3 install -r requirements.txt
 ```
- If you're getting an error message about pip, please refer to the [official pip guide](https://pip.pypa.io/en/stable/getting-started/).
  
+ If you're getting an error message about pip, please refer to the [official pip guide](https://pip.pypa.io/en/stable/getting-started/).
+
+5. Then simply write:
+```
+python project.py
+```
+![[Pasted image 20231007144959.png]]
+and enjoy! 
+
+![[Pasted image 20231007145058.png]]
+ **NOTE:**
+ If you're using Linux or macOS,  you might need to use `python3` instead of `python`:
+```
+ python3 project.py
+```
 ### How to play
 
 - Use the up **(↑)** and down **(↓)** keys to navigate the ***main menu***.
@@ -148,3 +178,9 @@ The license your project is under.
 ### Acknowledgments 
 
 - Font used in the project: **ARCADE.TTF** by **Jakob Fischer**. You can find more of their work [here](www.pizzadude.dk). Please note that this font is used for non-commercial purposes in this project.
+
+- Local Forecast – Elevator by Kevin MacLeod | https://incompetech.com/
+   Music promoted by https://www.chosic.com/free-music/all/
+   Creative Commons Creative Commons: By Attribution 3.0 License
+   http://creativecommons.org/licenses/by/3.0/
+
