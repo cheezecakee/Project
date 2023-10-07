@@ -11,7 +11,9 @@ The game features the character in a tower-like environment, the goal is to clim
 ### Installation
 
 1. Clone the repository to your local machine.
+
 2. Navigate to the **project** directory and copy the path.
+
 3.  Open your command terminal as an admin and go to the directory path: 
 
 For Windows:
@@ -176,7 +178,9 @@ The license your project is under.
 ### Acknowledgments 
 
 - Font used in the project: **ARCADE.TTF** by **Jakob Fischer**. You can find more of their work [here](www.pizzadude.dk). Please note that this font is used for non-commercial purposes in this project.
+
 - Local Forecast – Elevator by Kevin MacLeod | https://incompetech.com/
    Music promoted by https://www.chosic.com/free-music/all/
    Creative Commons Creative Commons: By Attribution 3.0 License
    http://creativecommons.org/licenses/by/3.0/
+
