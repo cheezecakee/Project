@@ -31,7 +31,7 @@ cd /path/to/your/folder
 ```
  pip install -r requirements.txt
 ``` 
-![Open_path](img/requirements.png)
+![Requirements](img/requirements.png)
  
  For more detailed instructions on installing the libraries used in this project, refer to the official guides:
 
@@ -51,7 +51,7 @@ cd /path/to/your/folder
 ```
 python project.py
 ```
-![open_project](img/python_project.png)
+![Open_project](img/python_project.png)
 and enjoy! 
 
 ![[Pasted image 20231007145058.png]]
