@@ -12,7 +12,7 @@ The game features the character in a tower-like environment, the goal is to clim
 
 1. Clone the repository to your local machine.
 
-![Open_path](img/clone.png)
+![Clone](img/clone.png)
 
 3. Navigate to the **project** directory and copy the path.
 
