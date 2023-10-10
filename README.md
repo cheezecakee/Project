@@ -1,5 +1,5 @@
 # Parkour
-#### Video Demo: <>
+#### Video Demo: [link](https://youtu.be/JazyI96XeWo)
 ### Overview
 
 Parkour is a 2D platformer game written in python using **Pygame** and **Pymunk**, it was inspired by the 2001 game *Icy Tower* by Johan Pietz and a favorite childhood game of mine. The game's name and character design are parodies from an episode of the famous TV show, *The Office* (US version), where one of the main characters Micheal Scott was jumping off of furniture and screaming "parkour".  All sprites were made by me, but I do not have ownership of the character design in my game, and was just made for the fun of it. The platforms were designed after the 4 elements: fire, water, earth, and air. 
@@ -11,10 +11,11 @@ The game features the character in a tower-like environment, the goal is to clim
 ### Installation
 
 1. Clone the repository to your local machine.
+![Open_path](img/clone.png)
 
-2. Navigate to the **project** directory and copy the path.
+3. Navigate to the **project** directory and copy the path.
 
-3.  Open your command terminal as an admin and go to the directory path: 
+4.  Open your command terminal as an admin and go to the directory path: 
 
 For Windows:
 ```
