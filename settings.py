@@ -1,8 +1,7 @@
 """
 All constant variables that are used in more than one class, function or
-file is stored here, these are not to be changed. Some extra
-settings included are the pygame display, gravity, and physics 
-settings.
+file is stored here, these are not to be changed. Some extra settings 
+included are the pygame display, gravity, and physics settings.
 """
 
 import os
@@ -34,7 +33,7 @@ GREY: tuple[int, int, int] = (128,128,128)
 YELLOW: tuple[int, int, int]   = (244, 224, 36)
 BURGANDY: tuple[int, int, int]  = (84, 21, 46)
 
-# Other settings
+# Number of platforms that are pre-spawned
 NUMBER_OF_PLATFORMS: int = 100
 
 # Fonts

@@ -1,4 +1,3 @@
-
 import pymunk
 from typing import Tuple, List
 from game_components.character import Character
@@ -23,7 +22,7 @@ class Collision:
         self.character = character
         self.platforms = platforms
         self.on_ground: bool = True
-        self.counter: int = -1
+        self.counter: int = -1 #This starts at -1 so that the score starts at 0
 
     def collide(self, arbiter, space, data) -> None:
         """
@@ -43,7 +42,7 @@ class Collision:
         if self.character.body.velocity.y < 0:
             self.on_ground = False
             return False
-        elif abs(self.character.body.velocity.y) > 0.001:
+        elif abs(self.character.body.velocity.y) > 1e-3:
             self.on_ground = True
             return True
         return False

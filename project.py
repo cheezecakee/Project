@@ -1,13 +1,11 @@
+import os
+import sys
 import pygame
 import pymunk
-import sys
-import os
 import settings as s
 from typing import List, Union
 from game_setup import GameSetup
 from game_manager import GameManager
-pygame.mixer.init()
-
 
 def handle_events(event: pygame.event.Event, key: Union[bool, int]) -> bool:
     """ 
@@ -81,7 +79,7 @@ def main_menu() -> str:
     Display the main menu and handle user interaction.
 
     Returns:
-        str: Selected menu item.  
+        str: Selected menu item.
     """
     
     pygame.display.set_caption("Menu")
@@ -125,6 +123,7 @@ def main_menu() -> str:
         # Rendering
         s.clock.tick(s.FPS) 
         pygame.display.update()
+        
     pygame.quit()
 
 def start_game() -> None:
@@ -150,9 +149,11 @@ def start_game() -> None:
         # Rendering
         s.clock.tick(s.FPS) 
         pygame.display.update()
+
         # Update physics
         for x in range(1):
             space.step(s.dt)
+
     pygame.quit()
 
 def main() -> None:

@@ -1,8 +1,8 @@
 import pygame
 import os
 import settings as s
-from game_components.character import Character
 from typing import List
+from game_components.character import Character
 
 class Mechanics:
     """Class responsible for setting the score, checking the game status and restarting the game."""
@@ -48,8 +48,8 @@ class Mechanics:
 
     def highscore(self) -> int:
         """
-        Retrieves the high score, updates it if the current score
-        and returns it.
+        Retrieves the high score, updates it if the current score is higher,
+        and then returns it.
 
         Returns:
             int: The high score.
@@ -85,6 +85,7 @@ class Mechanics:
 
     def restart_key(self) -> None:
         """Responsible for restarting the game on key press."""
+        
         key: List[bool] = pygame.key.get_pressed()
         if key[pygame.K_SPACE]:
             self.game_over = False

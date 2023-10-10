@@ -14,10 +14,10 @@ class PlatformManager:
         platforms (List): A list of platforms.
         prev_y (int): The previous y-coordinate of a platform.
         friciton (float): The friction of the platforms.
-        min_platform_size (int): The manimum size of a platform.
+        min_platform_size (int): The minimum size of a platform.
         max_platform_size (int): The maxamum size of a platform.
         platforms_thickness (int): The thickness of the platforms.
-        platform_disctance (int): The distance between platforms.
+        platform_distance (int): The distance between platforms.
         n_platforms (int): The number of platforms.
         passed (bool): A flag indicating whether a platform has been passed.
         platform_counter (int): A counter for the platforms.
@@ -28,7 +28,7 @@ class PlatformManager:
         The constructor for PlatformManager class.
 
         Args:
-            space (pymunk.Space): Thespace in which the platforms exist.
+            space (pymunk.Space): The space in which the platforms exist.
         """
         self.space = space
         self.platforms: List = []
@@ -39,8 +39,7 @@ class PlatformManager:
         self.platforms_thickness: int = so.PLATFORM_THICKNESS
         self.platform_distance: int = so.PLATFORM_DISTANCE
         self.n_platforms: int = s.NUMBER_OF_PLATFORMS
-        self.passed: bool = False
-        self.platform_counter: int = 5
+        self.platform_counter: int = 0
 
     def create_body(self) -> pymunk.Body:
         """
@@ -145,7 +144,7 @@ class PlatformManager:
         "self.platforms". If the platform is every 50th platform, it is moved to the center of the
         screen width. Otherwise, it is moved to a random x position. The "prev_y" position is then
         decremented by "self.plastform_distance", and the "passed" attribute of the body is set to
-        False. Finally, "self.platform_counter" is reset to 0.
+        False. Finally, "self.platform_counter" is reset to 5.
         """
         self.prev_y = so.PREV_Y
         for i, (body, platform) in enumerate(self.platforms):

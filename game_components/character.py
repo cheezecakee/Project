@@ -52,7 +52,6 @@ class Character:
         body.position = (self.pos_x,self.pos_y)
         return body
 
-    
     def character_shape(self) -> pymunk.Shape:
         """
         Create and return a character shape.
@@ -67,13 +66,11 @@ class Character:
         shape.friction = 0.5
         return shape
     
-   
     def get_angle(self) -> None:
         """Keep character angle upright."""
 
         self.body.angle = 0
 
-    
     def set_max_velocity(self) -> None:
         """Set a max velocity for the character."""
 
@@ -85,7 +82,6 @@ class Character:
             scale: float = max_velocity_x / speed
             self.body.velocity = pymunk.Vec2d(velocity.x * scale, velocity.y * scale)
 
-    
     def character_sensor(self) -> pymunk.Shape:
         """
         Create and return a character sensor shape.
@@ -103,7 +99,6 @@ class Character:
 
         self.body.position = pymunk.Vec2d(self.pos_x,self.pos_y)
         self.body.velocity = pymunk.Vec2d(0, 0)
-
 
 class Movement:
     """
@@ -138,9 +133,9 @@ class Movement:
 
         key: List[bool] = pygame.key.get_pressed()
 
-        if key[pygame.K_LEFT]: #move left
+        if key[pygame.K_LEFT]:
             self.left()
-        if key[pygame.K_RIGHT]: #move right
+        if key[pygame.K_RIGHT]:
             self.right()
 
 class Jump:
@@ -170,3 +165,4 @@ class Jump:
 
         if key[pygame.K_SPACE]:
             self.jump()
+    
