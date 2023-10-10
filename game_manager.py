@@ -1,4 +1,3 @@
-import os
 import sys
 import pygame
 import settings as s
@@ -10,7 +9,6 @@ from game_components.character import Movement
 from game_components.collision import Collision
 from game_components.mechanics import Mechanics 
 from game_components.scroll_system import Scroll
-pygame.mixer.init()
 
 class GameManager:
     """
@@ -58,7 +56,7 @@ class GameManager:
     
     def update_collision(self) -> None:
         """
-        Updates the collision handlers fot the character and platforms.
+        Updates the collision handlers for the character and platforms.
         """
 
         self.collision.add_collision_handlers()
@@ -159,7 +157,6 @@ class GameManager:
         
         self.mechanic.check_game_status(self.character)
     
-    # Game Over Screen
     def game_over_display(self) -> None:
         """
         Displays the game over screen when the game ends.
@@ -176,7 +173,7 @@ class GameManager:
         self.draw_character_game_over()
         self.bg_y = 0
         self.background_scroll = 0
-        self.scroll.speed = 1
+        self.scroll.speed = 0
         self.auto_scroll_start_ticks = s.START_TICKS
         self.character.reset_character()
         self.platform_manager.reset_platforms()
@@ -211,7 +208,7 @@ class GameManager:
         s.screen.blit(time, (s.WIDTH*0.01,s.HEIGHT*0.02))
         score = s.general_font.render(f"Score: {self.update_score()}", True, s.WHITE)
         s.screen.blit(score, (s.WIDTH*0.01,s.HEIGHT*0.07))
-        
+
     def draw_wall(self) -> None:
         """
         Draws the wall sprites on the game screen.
@@ -242,7 +239,6 @@ class GameManager:
         Draws the game over character sprite on the game screen.
         """
         character_img = self.images.character_gg
-        # character_img = self.images.scale_images(character_img, self.character.width, self.character.height)
         s.screen.blit(character_img, (s.WIDTH*0.36, s.HEIGHT*0.20))
 
     def draw_platform(self) -> None:
@@ -263,7 +259,7 @@ class GameManager:
                 platform_img = self.images.air_platform
             else:
                 platform_img = self.images.earth_platform
-                self.platform_manager.platform_counter = 5
+                self.platform_manager.platform_counter = 5 #Resets the counter to its initial value
 
             platform_width = abs(platform.a.x - platform.b.x)
             platform_img = self.images.scale_images(platform_img, platform_width, (so.PLATFORM_THICKNESS*2))

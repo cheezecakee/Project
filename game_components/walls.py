@@ -1,4 +1,3 @@
-
 import scale_objects as so
 from typing import Tuple
 import pymunk
@@ -15,8 +14,9 @@ class Walls:
         Initialize the Walls class with the given space.
 
         Args:
-            space (pymunk.Space):A A pymunk.Space object representing the game space.
+            space (pymunk.Space): A pymunk.Space object representing the game space.
         """
+        
         self.space = space
 
     def create_walls(self) -> Tuple[pymunk.Segment, pymunk.Segment]:

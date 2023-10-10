@@ -45,11 +45,11 @@ class Scroll:
         If the character's y position is less than half of the screen height, the scroll amount 
         is calculated as the difference between half of the screen height and the character's y
         position.
-        Then, the y position of all bodies in the space is incresed by the scroll amount. Finally,
+        Then, the y position of all bodies in the space is increased by the scroll amount. Finally,
         the platform counter is updated.
 
         Returns:
-            float: The amound of scrolling.
+            float: The amount of scrolling.
         """
 
         follow_height: float = s.HEIGHT / 2
@@ -69,7 +69,7 @@ class Scroll:
         Counts the number of platforms that the character has passed.
 
         This method iterates over all paltforms. If the character's y position is less than the
-        platform's y position and the platform has not been been passed before, it increments the
+        platform's y position and the platform have not been passed before, it increments the
         counter and marks the platform as passed.
 
         If all platforms have been passed, it resets the counter and the passed status of all 
@@ -97,7 +97,7 @@ class Scroll:
         Adjusts the speed of the scrolling based on the elapsed time and moves all bodies in the
         space accordingly.
 
-        This method first calculates the speed by adding 1 to the ration of the elaptsed time to 60.
+        This method first calculates the speed by adding 0.5 to the ration of the elaptsed time to 60.
         If the calculated speed exceeds the maxium speed, it is set to the maximum speed.
 
         Then, it iterates over all bodies in the space and adjusts their y position by adding the

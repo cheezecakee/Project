@@ -18,7 +18,7 @@ CHARACTER_MAX_VELOCITY_X: int = 3000
 
 CHARACTER_JUMP_FORCE: int = 1200
 # Formula for calculating the jump height based on the characters speed
-CHARACTER_JUMP_VELOCITY_FACTOR: float = (5000 - CHARACTER_JUMP_FORCE) / CHARACTER_MAX_VELOCITY_X
+CHARACTER_JUMP_VELOCITY_FACTOR: float = (8400 - CHARACTER_JUMP_FORCE) / CHARACTER_MAX_VELOCITY_X
 
 # Wall scale
 WALL_THICKNESS: int = s.WIDTH * 0.10
@@ -35,7 +35,7 @@ PLATFORM_DISTANCE: float = round(s.HEIGHT / 5)
 # The starting y position of the first platform based on the display height
 PREV_Y: int = s.HEIGHT
 
-# The formula below is to get the min and max values that the platform x can create based on the wall thickness so don't overlap
+# The formula below is to get the min and max values that the platform x can be created based on the wall thickness so they don't overlap
 MAX_HALF_SIZE: int = int(MAX_PLATFORM_SIZE / 2)
 PLATFORM_MIN_X: int = WALL_THICKNESS + MAX_HALF_SIZE
 PLATFORM_MAX_X: int = s.WIDTH - WALL_THICKNESS - MAX_HALF_SIZE

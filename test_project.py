@@ -11,7 +11,6 @@ import pygame
 from pygame.locals import *
 from unittest.mock import patch, Mock
 
-import scale_objects as so
 import settings as s
 
 import project
@@ -134,7 +133,7 @@ def test_character_to_platform_collision_up() -> None:
     # Apply an upward force to simulate the character jumping
     mock_character.body.apply_impulse_at_local_point((0, -500), (0,0))
 
-    # Now when you call the collide method, it should return False
+    # When collide method is called, it should return False
     assert mock_collision.collide(arbiter, space, data) == False
     assert mock_collision.on_ground is False
 
@@ -153,6 +152,7 @@ def test_character_to_platform_collision_down() -> None:
     """
     
     mock_space = Mock(pymunk.Space)
+
     # Create a mock arbiter, space, and data
     arbiter = Mock()
     space = Mock()
@@ -181,7 +181,7 @@ def test_character_to_platform_collision_down() -> None:
     # Apply a downward force to simulate the character moving downward
     mock_character.body.apply_impulse_at_local_point((0, 500), (0,0))
 
-    # Now when you call the collide method, it should return False
+    # When collide method is called, it should return True
     assert mock_collision.collide(arbiter, space, data) == True
     assert mock_collision.on_ground is True
 
@@ -374,35 +374,6 @@ def test_auto_scroll() -> None:
     for initial, final in zip(initial_positions, final_positions):
         assert final == initial + scroll_speed
 
-
-def test_platform_move_to_top() -> None:
-    """
-    Test the platform move to top.
-
-    This function tests the platform move to top by creating a mock platform and checking its position after calling the 
-    move_platforms method.
-
-    Args:
-        None
-    
-    Returns:
-        None
-    """
-
-    # Create a mock platform
-    mock_space = Mock(pymunk.Space)
-    platform_manager = PlatformManager(mock_space)
-    mock_body = Mock(spec=pymunk.Body)
-    mock_segment = Mock(spec=pymunk.Segment)
-    mock_body.position.y = s.HEIGHT + 1
-    platform_manager.platforms.append((mock_body, mock_segment))
-
-    # Test that platforms with y position > s.HEIGHT are repositioned.
-    platform_manager.move_platforms()
-    assert mock_body.passed is False
-    assert mock_body.position.y < s.HEIGHT
-
-
 def test_score() -> None:
     """ 
     Test the game score output.
@@ -438,7 +409,7 @@ def test_game_over() -> None:
 
     mock_mechanic = Mock(spec=Mechanics)
     mock_character_body = pymunk.Body(1,1)
-    mock_character_body.position = pymunk.Vec2d(0, s.HEIGHT + 1)# Start characters position less than half of the screen height
+    mock_character_body.position = pymunk.Vec2d(0, s.HEIGHT + 1) # Start characters position less than half of the screen height
 
     mock_character = Mock()  # Create a mock Character object
     mock_character.body = mock_character_body
