@@ -14,9 +14,9 @@ The game features the character in a tower-like environment, the goal is to clim
 
 ![Clone](img/clone.png)
 
-3. Navigate to the **project** directory and copy the path.
+2. Navigate to the **project** directory and copy the path.
 
-4.  Open your command terminal as an admin and go to the directory path: 
+3.  Open your command terminal as an admin and go to the directory path: 
 
 For Windows:
 ```
